@@ -1,20 +1,23 @@
 package Main;
 
 import javax.swing.JFrame;
-import Utilz.Variables;
 
-public class GameWindow extends javax.swing.JFrame {
+public class GameWindow extends JFrame {
     
     public GameWindow() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);
 
+		GamePanel gamePanel = new GamePanel();
+		this.add(gamePanel);
+
         this.setTitle("A Pirated Adventure");
 		this.pack();
 		this.setLayout(null);
-		this.setSize(Variables.WINDOW_WIDTH, Variables.WINDOW_HEIGHT);
 		this.setVisible(true);
 		this.setLocationRelativeTo(null);
+		
+		gamePanel.startGameThread();
     }
 
 }

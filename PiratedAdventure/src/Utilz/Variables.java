@@ -15,4 +15,8 @@ public class Variables {
 
     public static final int WINDOW_WIDTH = WINDOW_TILES_WIDTH * TILE_SIZE;
     public static final int WINDOW_HEIGHT = WINDOW_TILES_HEIGHT * TILE_SIZE;
+
+    // Running systems
+
+    public static final int FPS = 60;
 }
