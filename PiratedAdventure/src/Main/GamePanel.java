@@ -3,17 +3,24 @@ package Main;
 import javax.swing.JPanel;
 import Utilz.Variables;
 
+import Entities.Player;
+
 public class GamePanel extends JPanel implements Runnable {
-    
+	
+	public Player player;
     public Thread gameThread;
 
     public GamePanel() {
         this.setBackground(java.awt.Color.BLACK);
         this.setPreferredSize(new java.awt.Dimension(Variables.WINDOW_WIDTH, Variables.WINDOW_HEIGHT));
+		this.setDoubleBuffered(true);
+		this.setFocusable(true);
+
+        player = new Player(100, 100);
     }
 
     public void startGameThread() {
-        gameThread = new Thread();
+        gameThread = new Thread(this);
         gameThread.start();
     }
 
@@ -51,11 +58,13 @@ public class GamePanel extends JPanel implements Runnable {
 	}
 
      public void update() {
-        
+        player.update();
+
     }
 
     public void paint(java.awt.Graphics g) {
         super.paint(g);
+		player.draw(g);
     }
     
  }
