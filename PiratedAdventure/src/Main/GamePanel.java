@@ -4,19 +4,23 @@ import javax.swing.JPanel;
 import Utilz.Variables;
 
 import Entities.Player;
+import Input.KeyboardInput;
 
 public class GamePanel extends JPanel implements Runnable {
 	
 	public Player player;
     public Thread gameThread;
+	public KeyboardInput keyInput;
 
     public GamePanel() {
         this.setBackground(java.awt.Color.BLACK);
         this.setPreferredSize(new java.awt.Dimension(Variables.WINDOW_WIDTH, Variables.WINDOW_HEIGHT));
 		this.setDoubleBuffered(true);
 		this.setFocusable(true);
-
-        player = new Player(100, 100);
+		
+		keyInput = new KeyboardInput();
+		this.addKeyListener(keyInput);
+        player = new Player(keyInput);
     }
 
     public void startGameThread() {
