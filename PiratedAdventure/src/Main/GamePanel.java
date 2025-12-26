@@ -1,6 +1,8 @@
 package Main;
 
 import javax.swing.JPanel;
+
+import Utilz.GameFiles;
 import Utilz.Variables;
 
 import Entities.Player;
@@ -11,6 +13,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public Player player;
     public Thread gameThread;
 	public KeyboardInput keyInput;
+	public GameFiles files;
 
     public GamePanel() {
         this.setBackground(java.awt.Color.BLACK);
@@ -18,9 +21,10 @@ public class GamePanel extends JPanel implements Runnable {
 		this.setDoubleBuffered(true);
 		this.setFocusable(true);
 		
+		files = new GameFiles();
 		keyInput = new KeyboardInput();
 		this.addKeyListener(keyInput);
-        player = new Player(keyInput);
+        player = new Player(keyInput, files);
     }
 
     public void startGameThread() {

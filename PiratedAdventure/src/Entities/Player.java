@@ -2,12 +2,9 @@ package Entities;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 
 import Input.KeyboardInput;
+import Utilz.GameFiles;
 import Utilz.Variables;
 
 public class Player extends Entity {
@@ -16,12 +13,14 @@ public class Player extends Entity {
     BufferedImage[] idle, walk, jump, fall, die;
     BufferedImage spriteSheet;
     KeyboardInput keyIn;
+    GameFiles files;
     int speed = 4;
 
 
-    public Player(KeyboardInput keyIn) {
-        setupPlayer();
+    public Player(KeyboardInput keyIn, GameFiles files) {
         this.keyIn = keyIn;
+        this.files = files;
+        setupPlayer();
     }
 
     // setting up the player
@@ -34,11 +33,7 @@ public class Player extends Entity {
     
     public void setupSpriteSheet() {
         // getting the reference to the image
-        try {
-            spriteSheet = ImageIO.read(new File("Pirated-Adventure/PiratedAdventure/res/player/PlayerSpriteSheet.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        spriteSheet = files.PLAYER_SPRITE;
 
         // Chopping.. I mean seperating the image into frames
 
@@ -72,5 +67,7 @@ public class Player extends Entity {
     public void draw(java.awt.Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(x, y, Variables.TILE_SIZE, Variables.TILE_SIZE);
+        g.drawImage(allFrames[0][0], x, y, Variables.TILE_SIZE, Variables.TILE_SIZE, null);
+
     }
 }
