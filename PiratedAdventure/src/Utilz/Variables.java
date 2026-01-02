@@ -19,4 +19,22 @@ public class Variables {
     // Running systems
 
     public static final int FPS = 60;
+
+    // Entity settings
+
+        // Anim Cycle
+
+    public static final int IDLE = 0;
+    public static final int RUN = 1;
+    public static final int JUMP = 2;
+    public static final int FALL = 3;
+    public static final int ATTACKED = 4;
+    public static final int DIE = 5;    
+
+        // Entity Image
+    
+    public static final int EntityWidth = 64 * SCALE;
+    public static final int EntityHeight = 40 * SCALE;
+    public static final int EntityOffset = 32;
+
 }

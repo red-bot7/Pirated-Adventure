@@ -9,12 +9,21 @@ import Utilz.Variables;
 
 public class Player extends Entity {
 
+    // extras...
+
     BufferedImage[][] allFrames;
     BufferedImage[] idle, walk, jump, fall, die;
     BufferedImage spriteSheet;
     KeyboardInput keyIn;
     GameFiles files;
     int speed = 4;
+    
+    // Animation
+    
+    int currentFrame = 0;
+    int currentCycle = 0;
+    int MaxDelay = 12;
+    int currentDelay = 0;
 
 
     public Player(KeyboardInput keyIn, GameFiles files) {
@@ -50,6 +59,49 @@ public class Player extends Entity {
 
     public void update() {
         updateCoordinates();
+        updateAnimationCycle();
+        updateCurrentFrame();
+    }
+
+    private void updateCurrentFrame() { // updating frames
+        if(currentCycle == Variables.RUN) {
+            if(currentFrame >= 5) {
+                currentFrame = 0;
+            } else {
+                currentDelay++;
+
+                if(currentDelay >= MaxDelay) {
+                    currentDelay = 0;
+                    currentFrame++;
+                }
+            }
+        } else if(currentCycle == Variables.IDLE) {
+            if(currentFrame >= 4) {
+                currentFrame = 0;
+            } else {
+                currentDelay++;
+
+                if(currentDelay >= MaxDelay) {
+                    currentDelay = 0;
+                    currentFrame++;
+                }
+            }
+        }
+    }
+
+    private void updateAnimationCycle() {
+
+        int prevCycle = currentCycle;
+
+        if(keyIn.isMoving) {
+            currentCycle = Variables.RUN;
+        } else {
+            currentCycle = Variables.IDLE;
+        }
+
+        if(prevCycle != currentCycle) {
+            currentFrame = 0;
+        }
     }
 
     public void updateCoordinates() {
@@ -64,10 +116,13 @@ public class Player extends Entity {
         }
     }
 
+    // player drawing
+
     public void draw(java.awt.Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(x, y, Variables.TILE_SIZE, Variables.TILE_SIZE);
-        g.drawImage(allFrames[0][0], x, y, Variables.TILE_SIZE, Variables.TILE_SIZE, null);
 
+        g.drawImage(allFrames[currentFrame][currentCycle], x - 32, y, Variables.EntityWidth, Variables.EntityHeight, null);
+        
     }
 }
