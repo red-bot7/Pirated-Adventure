@@ -18,13 +18,16 @@ public class KeyboardInput implements KeyListener{
         if(e.getKeyCode() == KeyEvent.VK_W) {
             up = true;
             isMoving = true;
-        } else if(e.getKeyCode() == KeyEvent.VK_S) {
+        }
+        if(e.getKeyCode() == KeyEvent.VK_S) {
             down = true;
             isMoving = true;
-        } else if(e.getKeyCode() == KeyEvent.VK_A) {
+        } 
+        if(e.getKeyCode() == KeyEvent.VK_A) {
             left = true;
             isMoving = true;
-        } else if(e.getKeyCode() == KeyEvent.VK_D) {
+        }
+        if(e.getKeyCode() == KeyEvent.VK_D) {
             right = true;
             isMoving = true;
         }
@@ -35,13 +38,16 @@ public class KeyboardInput implements KeyListener{
         if(e.getKeyCode() == KeyEvent.VK_W) {
             up = false;
             isMoving = false;
-        } else if(e.getKeyCode() == KeyEvent.VK_S) {
+        }
+        if(e.getKeyCode() == KeyEvent.VK_S) {
             down = false;
             isMoving = false;
-        } else if(e.getKeyCode() == KeyEvent.VK_A) {
+        } 
+        if(e.getKeyCode() == KeyEvent.VK_A) {
             left = false;
             isMoving = false;
-        } else if(e.getKeyCode() == KeyEvent.VK_D) {
+        }
+        if(e.getKeyCode() == KeyEvent.VK_D) {
             right = false;
             isMoving = false;
         }

@@ -69,7 +69,6 @@ public class Player extends Entity {
                 currentFrame = 0;
             } else {
                 currentDelay++;
-
                 if(currentDelay >= MaxDelay) {
                     currentDelay = 0;
                     currentFrame++;
@@ -80,7 +79,6 @@ public class Player extends Entity {
                 currentFrame = 0;
             } else {
                 currentDelay++;
-
                 if(currentDelay >= MaxDelay) {
                     currentDelay = 0;
                     currentFrame++;
