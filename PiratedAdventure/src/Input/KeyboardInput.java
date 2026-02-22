@@ -17,18 +17,18 @@ public class KeyboardInput implements KeyListener{
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_W) {
             up = true;
-            isMoving = true;
         }
         if(e.getKeyCode() == KeyEvent.VK_S) {
             down = true;
-            isMoving = true;
         } 
         if(e.getKeyCode() == KeyEvent.VK_A) {
             left = true;
-            isMoving = true;
         }
         if(e.getKeyCode() == KeyEvent.VK_D) {
             right = true;
+        }
+
+        if(up || left || right || down) {
             isMoving = true;
         }
     }
@@ -37,18 +37,18 @@ public class KeyboardInput implements KeyListener{
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_W) {
             up = false;
-            isMoving = false;
         }
         if(e.getKeyCode() == KeyEvent.VK_S) {
             down = false;
-            isMoving = false;
         } 
         if(e.getKeyCode() == KeyEvent.VK_A) {
             left = false;
-            isMoving = false;
         }
         if(e.getKeyCode() == KeyEvent.VK_D) {
             right = false;
+        }
+        
+        if(!up && !left && !right && !down) {
             isMoving = false;
         }
     }

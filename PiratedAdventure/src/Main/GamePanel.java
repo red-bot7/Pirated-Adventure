@@ -7,6 +7,7 @@ import Utilz.Variables;
 
 import Entities.Player;
 import Input.KeyboardInput;
+import Background.TileManager;
 
 public class GamePanel extends JPanel implements Runnable {
 	
@@ -14,6 +15,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Thread gameThread;
 	public KeyboardInput keyInput;
 	public GameFiles files;
+	public TileManager tileManager;
 
     public GamePanel() {
         this.setBackground(java.awt.Color.BLACK);
@@ -25,6 +27,7 @@ public class GamePanel extends JPanel implements Runnable {
 		keyInput = new KeyboardInput();
 		this.addKeyListener(keyInput);
         player = new Player(keyInput, files);
+		tileManager = new TileManager();
     }
 
     public void startGameThread() {
@@ -73,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void paint(java.awt.Graphics g) {
         super.paint(g);
 		player.draw(g);
+		tileManager.draw(g);
     }
     
  }
