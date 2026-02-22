@@ -15,7 +15,6 @@ public class Player extends Entity {
     BufferedImage[] idle, walk, jump, fall, die;
     BufferedImage spriteSheet;
     KeyboardInput keyIn;
-    GameFiles files;
     int speed = 4;
     
     // Animation
@@ -26,9 +25,9 @@ public class Player extends Entity {
     int currentDelay = 0;
 
 
-    public Player(KeyboardInput keyIn, GameFiles files) {
+    public Player(KeyboardInput keyIn) {
         this.keyIn = keyIn;
-        this.files = files;
+
         setupPlayer();
     }
 
@@ -42,7 +41,7 @@ public class Player extends Entity {
     
     public void setupSpriteSheet() {
         // getting the reference to the image
-        spriteSheet = files.PLAYER_SPRITE;
+        spriteSheet = GameFiles.PLAYER_SPRITE;
 
         // Chopping.. I mean seperating the image into frames
 

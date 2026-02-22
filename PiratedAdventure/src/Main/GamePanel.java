@@ -26,7 +26,7 @@ public class GamePanel extends JPanel implements Runnable {
 		files = new GameFiles();
 		keyInput = new KeyboardInput();
 		this.addKeyListener(keyInput);
-        player = new Player(keyInput, files);
+        player = new Player(keyInput);
 		tileManager = new TileManager();
     }
 
@@ -75,8 +75,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paint(java.awt.Graphics g) {
         super.paint(g);
-		player.draw(g);
+		
 		tileManager.draw(g);
+		player.draw(g);
     }
     
  }

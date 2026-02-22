@@ -5,8 +5,6 @@ import Utilz.Variables;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import Background.Tile;
-
 
 public class TileManager {
 
