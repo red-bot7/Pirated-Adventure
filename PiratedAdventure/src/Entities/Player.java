@@ -15,7 +15,6 @@ public class Player extends Entity {
     BufferedImage[] idle, walk, jump, fall, die;
     BufferedImage spriteSheet;
     KeyboardInput keyIn;
-    int speed = 4;
     
     // Animation
     
@@ -103,12 +102,30 @@ public class Player extends Entity {
 
     public void updateCoordinates() {
 
+        double speed = 4;
+
+        // dealing with diagonal movement (Fixing it)
+        boolean yMove = false;
+        boolean xMove = false;
+
+        if(keyIn.up || keyIn.down) {
+            yMove = true;
+        }
+
+        if(keyIn.left || keyIn.right) {
+            xMove = true;
+        }
+
+        if(xMove && yMove) {
+            speed -= 1.657;
+        } 
+
         if(keyIn.up == true) {
             y-= speed;
         }else if(keyIn.down == true) {
             y+= speed;
         }
-        
+
         if(keyIn.right == true) {
             x+= speed;
         } else if(keyIn.left == true) {
