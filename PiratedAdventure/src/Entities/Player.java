@@ -102,11 +102,14 @@ public class Player extends Entity {
     }
 
     public void updateCoordinates() {
+
         if(keyIn.up == true) {
             y-= speed;
-        } else if(keyIn.down == true) {
+        }else if(keyIn.down == true) {
             y+= speed;
-        } else if(keyIn.right == true) {
+        }
+        
+        if(keyIn.right == true) {
             x+= speed;
         } else if(keyIn.left == true) {
             x-= speed;
