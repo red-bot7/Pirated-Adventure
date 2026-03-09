@@ -40,7 +40,7 @@ public class TileManager {
         // water tiles (Later part)
     }
 
-    public void loadMap(Graphics g) {
+    public void loadMap(Graphics g, int indexOffset) {
         for(int i=0; i<14; i++) { // row
             for(int j=0; j<45; j++) { // col
                 int pixel = GameFiles.LEVEL_TEST.getRGB(j, i);
@@ -50,15 +50,15 @@ public class TileManager {
                 int xIndex = color.getRed();
                 int yIndex = color.getGreen();
                 
-                draw(g, xIndex, yIndex, j, i);
+                draw(g, xIndex, yIndex, j, i, indexOffset);
             }
         }
     }
 
 
 
-    public void draw(Graphics g, int xIndex, int yIndex, int xMapLocation, int yMapLocation) { 
-        g.drawImage(tileMap[yIndex][xIndex].image, Variables.TILE_SIZE * xMapLocation, Variables.TILE_SIZE * yMapLocation, Variables.TILE_SIZE, Variables.TILE_SIZE, null); // max
+    public void draw(Graphics g, int xIndex, int yIndex, int xMapLocation, int yMapLocation, int drawOffset) { 
+        g.drawImage(tileMap[yIndex][xIndex].image, Variables.TILE_SIZE * xMapLocation - drawOffset, Variables.TILE_SIZE * yMapLocation, Variables.TILE_SIZE, Variables.TILE_SIZE, null); // max
     }
 
 }

@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable {
 	public KeyboardInput keyInput;
 	public GameFiles files;
 	public TileManager tileManager;
+	public int currentMapIndex = 0;
 
     public GamePanel() {
         this.setBackground(java.awt.Color.BLACK);
@@ -76,7 +77,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void paint(java.awt.Graphics g) {
         super.paint(g);
 		
-		tileManager.loadMap(g);
+		tileManager.loadMap(g, currentMapIndex);
 		player.draw(g);
     }
     
