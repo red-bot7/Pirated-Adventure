@@ -10,22 +10,34 @@ import java.awt.image.BufferedImage;
 public class TileManager {
 
     Tile[][] tileMap;
+    Boolean[][] tileMapCollision;
     int [][] LevelTileIndexRow = new int[12][4]; // [column][row]
 
     public TileManager() {
-        setUpTiles();
+        setUpTiles(); // [And Colision]
     }
 
     public void setUpTiles() {
         BufferedImage image = GameFiles.TERRAIN;
         tileMap = new Tile[12][4]; // [column][row]
+        tileMapCollision = new Boolean[12][4];
 
         for(int i=0; i<4; i++) {
             for(int j=0; j<12; j++) {
                 tileMap[j][i] = new Tile();
                 tileMap[j][i].image = image.getSubimage(32*j, 32*i, 32, 32);
+
+                // collision property :)
+                
+                if(i==0 && j == 11) {
+                    tileMapCollision[j][i] = false;
+                } else {
+                    tileMapCollision[j][i] = true;
+                }
             }
         }
+
+        // water tiles (Later part)
     }
 
     public void loadMap(Graphics g) {
