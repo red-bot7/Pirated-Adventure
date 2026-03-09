@@ -107,18 +107,15 @@ public class Player extends Entity {
         // dealing with diagonal movement (Fixing it)
         boolean yMove = false;
         boolean xMove = false;
-
         if(keyIn.up || keyIn.down) {
             yMove = true;
         }
-
         if(keyIn.left || keyIn.right) {
             xMove = true;
         }
-
         if(xMove && yMove) {
-            speed -= 1.657;
-        } 
+            speed -= 1.457;
+        }
 
         if(keyIn.up == true) {
             y-= speed;
@@ -137,7 +134,7 @@ public class Player extends Entity {
 
     public void draw(java.awt.Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillRect(x, y, Variables.TILE_SIZE, Variables.TILE_SIZE);
+        g.fillRect(x, y, Variables.TILE_SIZE, Variables.TILE_SIZE); // hitbox
 
         g.drawImage(allFrames[currentFrame][currentCycle], x - 32, y, Variables.EntityWidth, Variables.EntityHeight, null);
         
