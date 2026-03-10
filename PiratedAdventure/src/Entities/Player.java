@@ -1,6 +1,8 @@
 package Entities;
 
 import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
 import Input.KeyboardInput;
@@ -15,7 +17,7 @@ public class Player extends Entity {
     BufferedImage[] idle, walk, jump, fall, die;
     BufferedImage spriteSheet;
     KeyboardInput keyIn;
-    
+
     // Animation
     
     int currentFrame = 0;
@@ -23,14 +25,24 @@ public class Player extends Entity {
     int MaxDelay = 12;
     int currentDelay = 0;
 
+    // Imp Variables
+
+    double speed = 3*Variables.SCALE;
+    Rectangle2D hitbox;
+
 
     public Player(KeyboardInput keyIn) {
         this.keyIn = keyIn;
-
         setupPlayer();
+        setupHitbox();
     }
 
     // setting up the player
+
+    public void setupHitbox() {
+        hitbox = new Rectangle2D.Double();
+        hitbox.setRect(x+Variables.hitboxXOffset, y+Variables.hitboxYOffset, Variables.hitboxWidth, Variables.hitboxHeight);
+    }
 
     public void setupPlayer() {
         x = Variables.TILE_SIZE * 4;
@@ -57,8 +69,22 @@ public class Player extends Entity {
 
     public void update() {
         updateCoordinates();
+        updateGravity();
+        updateCollision();
         updateAnimationCycle();
         updateCurrentFrame();
+        
+    }
+
+    private void updateCollision() {
+        int currentTileX = (int)hitbox.getX()/Variables.TILE_SIZE;
+        int currentTileY = (int)hitbox.getY()/Variables.TILE_SIZE;
+
+        System.out.println("X: " + currentTileX + "Y: " + currentTileY);
+    }
+
+    public void updateGravity() {
+        // work on it later :)
     }
 
     private void updateCurrentFrame() { // updating frames
@@ -101,26 +127,10 @@ public class Player extends Entity {
     }
 
     public void updateCoordinates() {
-
-        double speed = 4;
-
-        // dealing with diagonal movement (Fixing it)
-        boolean yMove = false;
-        boolean xMove = false;
-        if(keyIn.up || keyIn.down) {
-            yMove = true;
-        }
-        if(keyIn.left || keyIn.right) {
-            xMove = true;
-        }
-        if(xMove && yMove) {
-            speed -= 1.457;
-        }
-
-        if(keyIn.up == true) {
-            y-= speed;
-        }else if(keyIn.down == true) {
+        if(keyIn.down == true) {
             y+= speed;
+        } else if(keyIn.up == true) {
+            y-= speed;
         }
 
         if(keyIn.right == true) {
@@ -128,13 +138,17 @@ public class Player extends Entity {
         } else if(keyIn.left == true) {
             x-= speed;
         }
+
+        hitbox.setRect(x+Variables.hitboxXOffset, y+Variables.hitboxYOffset, Variables.hitboxWidth, Variables.hitboxHeight);
     }
 
     // player drawing
 
     public void draw(java.awt.Graphics g) {
         g.setColor(Color.WHITE);
-        g.fillRect(x, y, Variables.TILE_SIZE, Variables.TILE_SIZE); // hitbox
+        Graphics2D g2 = (Graphics2D)g;
+
+        g2.draw(hitbox);
 
         g.drawImage(allFrames[currentFrame][currentCycle], x - 32, y, Variables.EntityWidth, Variables.EntityHeight, null);
         

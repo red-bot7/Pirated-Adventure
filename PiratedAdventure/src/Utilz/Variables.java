@@ -37,4 +37,11 @@ public class Variables {
     public static final int EntityHeight = 40 * SCALE;
     public static final int EntityOffset = 32;
 
+    // player hitbox
+
+    public static final int hitboxWidth = 20*SCALE;
+    public static final int hitboxHeight = 29*SCALE;
+    public static final int hitboxXOffset = 10;
+    public static final int hitboxYOffset = 5;
+
 }
