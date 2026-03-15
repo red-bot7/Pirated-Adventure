@@ -27,8 +27,9 @@ public class GamePanel extends JPanel implements Runnable {
 		files = new GameFiles();
 		keyInput = new KeyboardInput();
 		this.addKeyListener(keyInput);
-        player = new Player(keyInput);
 		tileManager = new TileManager();
+        player = new Player(keyInput, tileManager);
+		
     }
 
     public void startGameThread() {

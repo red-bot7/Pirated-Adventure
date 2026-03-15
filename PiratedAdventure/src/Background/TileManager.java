@@ -11,7 +11,8 @@ public class TileManager {
 
     Tile[][] tileMap;
     Boolean[][] tileMapCollision;
-    int [][] LevelTileIndexRow = new int[12][4]; // [column][row]
+    int [][] LevelTileIndexRow = new int[45][14]; // [column][row]
+    int [][] LevelTileIndexColumn = new int[45][14]; // [column][row]
 
     public TileManager() {
         setUpTiles(); // [And Colision]
@@ -40,6 +41,13 @@ public class TileManager {
         // water tiles (Later part)
     }
 
+    public boolean checkBlockCollidable(int x, int y) {
+        int xIndex = LevelTileIndexRow[x][y];
+        int yIndex = LevelTileIndexColumn[x][y];
+
+        return tileMapCollision[yIndex][xIndex];
+    }
+
     public void loadMap(Graphics g, int indexOffset) {
         for(int i=0; i<14; i++) { // row
             for(int j=0; j<45; j++) { // col
@@ -49,6 +57,9 @@ public class TileManager {
 
                 int xIndex = color.getRed();
                 int yIndex = color.getGreen();
+
+                LevelTileIndexRow[j][i] = xIndex;
+                LevelTileIndexColumn[j][i] = yIndex;
                 
                 draw(g, xIndex, yIndex, j, i, indexOffset);
             }

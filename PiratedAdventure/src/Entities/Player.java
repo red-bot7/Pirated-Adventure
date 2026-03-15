@@ -5,6 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferedImage;
 
+import Background.TileManager;
 import Input.KeyboardInput;
 import Utilz.GameFiles;
 import Utilz.Variables;
@@ -25,16 +26,19 @@ public class Player extends Entity {
     int MaxDelay = 12;
     int currentDelay = 0;
 
+    TileManager tileManager;
+
     // Imp Variables
 
     double speed = 3*Variables.SCALE;
     Rectangle2D hitbox;
 
 
-    public Player(KeyboardInput keyIn) {
+    public Player(KeyboardInput keyIn, TileManager tileMapManager) {
         this.keyIn = keyIn;
         setupPlayer();
         setupHitbox();
+        this.tileManager = tileMapManager;
     }
 
     // setting up the player
@@ -81,6 +85,10 @@ public class Player extends Entity {
         int currentTileY = (int)hitbox.getY()/Variables.TILE_SIZE;
 
         System.out.println("X: " + currentTileX + "Y: " + currentTileY);
+        
+        if(tileManager.checkBlockCollidable(currentTileX, currentTileY+1)) {
+            System.out.println("Collision detected");
+        }
     }
 
     public void updateGravity() {
