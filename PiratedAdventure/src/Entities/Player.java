@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 
 import Background.TileManager;
 import Input.KeyboardInput;
+import Utilz.Collisions;
 import Utilz.GameFiles;
 import Utilz.Variables;
 
@@ -145,6 +146,20 @@ public class Player extends Entity {
             x+= speed;
         } else if(keyIn.left == true) {
             x-= speed;
+        }
+
+        if(!Collisions.IsPositionValid(this)) {
+            if(keyIn.down == true) {
+                y-= speed;
+            } else if(keyIn.up == true) {
+                y+= speed;
+            }
+
+            if(keyIn.right == true) {
+                x-= speed;
+            } else if(keyIn.left == true) {
+                x+= speed;
+            }
         }
 
         hitbox.setRect(x+Variables.hitboxXOffset, y+Variables.hitboxYOffset, Variables.hitboxWidth, Variables.hitboxHeight);

@@ -11,6 +11,7 @@ public class GameFiles {
     public static BufferedImage PLAYER_SPRITE;
     public static BufferedImage TERRAIN;
     public static BufferedImage LEVEL_TEST;
+    public static BufferedImage Background;
 
     public GameFiles() {
          try {
@@ -21,7 +22,11 @@ public class GameFiles {
             // Levels
 
             LEVEL_TEST = ImageIO.read(new File("Pirated-Adventure/PiratedAdventure/res/Levels/Test.png"));
-         
+            
+            // Decoration
+
+            Background = ImageIO.read(new File("Pirated-Adventure/PiratedAdventure/res/PalmTreeIsland/BG Image.png"));
+
          } catch (IOException e) {
             e.printStackTrace();
          }
