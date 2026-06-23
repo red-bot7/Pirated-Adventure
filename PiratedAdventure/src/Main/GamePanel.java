@@ -78,7 +78,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void paint(java.awt.Graphics g) {
         super.paint(g);
 		
-		g.drawImage(files.Background, 0, 0, Variables.WINDOW_WIDTH, Variables.WINDOW_HEIGHT, null);
+		g.drawImage(GameFiles.Background, 0, 0, Variables.WINDOW_WIDTH, Variables.WINDOW_HEIGHT, null);
 
 		tileManager.loadMap(g, currentMapIndex);
 		player.draw(g);
